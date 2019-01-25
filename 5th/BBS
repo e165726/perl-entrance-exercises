@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 use Mojolicious::Lite;
+plugin 'BootstrapHelpers';
 
 my $name;
 my $mail; 
@@ -19,14 +20,16 @@ post '/post' => sub {
   my $name = $c->param('name');
   my $mail = $c->param('mail');
   my $entry = $c->param('body');
-  my %bord = (
+  my $bord = {
     name => $name,
     mail => $mail,
     entry => $entry,
-  );
-  my $bord_ref = \%bord;
-  
-  push @entries, $bord_ref;
+  };
+  if ($mail eq 'age') {
+    unshift @entries,$bord;
+  }else{
+    push @entries, $bord;
+  }
   $c->redirect_to('/');
 };
 
