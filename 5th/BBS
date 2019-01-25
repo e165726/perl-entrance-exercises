@@ -1,6 +1,5 @@
 #!/usr/bin/env perl
 use Mojolicious::Lite;
-plugin 'BootstrapHelpers';
 
 my $name;
 my $mail; 
